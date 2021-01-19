@@ -6,7 +6,8 @@ class SearchBar extends React.Component
 
    onFormSubmit =(e)=>{
        e.preventDefault();  // form will not submit automatically on Enter.
-    console.log(this.state.term)
+       this.props.onSubmiT(this.state.term);
+       //console.log(this.state.term)
     }
 
     // onInputClick(){
