@@ -4,6 +4,11 @@ class SearchBar extends React.Component
 {
    state ={term:''};
 
+   onFormSubmit =(e)=>{
+       e.preventDefault();  // form will not submit automatically on Enter.
+    console.log(this.state.term)
+    }
+
     // onInputClick(){
     //     console.log("CLICKED!!!")
     // }   
@@ -11,7 +16,7 @@ class SearchBar extends React.Component
     render() {
         return (
         <div className="ui segment">
-            <form className="ui form">
+            <form onSubmit={this.onFormSubmit} className="ui form">
                 <div className="field">
                 <label align="center">Image Search</label>    
                 <input type="text" 
