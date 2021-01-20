@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
+import unsplash from '../api/unsplash';
 import SearchBar from './SearchBar';
+import ImageList from '../components/ImageList';
 
 
 class App extends React.Component {
@@ -8,13 +9,10 @@ class App extends React.Component {
   state={images:[]};
 onSearchSubmit = async(term)=>{
 //console.log(term)
-const response=await axios.get('https://api.unsplash.com/search/photos',
+const response=await unsplash.get('/search/photos',
 {
-  params:{query:term},
-headers:{
-Authorization:'Client-ID aSYI81rvCekBxkVA9jQ6QKr_qXmPw3x7jeNtvRzO8ME'
-}
-})
+  params:{query:term}
+});
 //console.log(this)
 //console.log(response.data.results);
 this.setState({images: response.data.results});
@@ -28,7 +26,7 @@ this.setState({images: response.data.results});
             className="ui container" 
            style={{marginTop:'15px'}}>
            <SearchBar onSubmiT={this.onSearchSubmit} guessWhat="I am the props OBJ"/> 
-           Found: {this.state.images.length} images
+           <ImageList images={this.state.images}/>
      </div>
   )
   } 
